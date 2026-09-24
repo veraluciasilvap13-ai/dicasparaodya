@@ -77,14 +77,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Novena a Maria che Scioglie i Nodi" },
+      { name: "description", content: "La Novena delle 9 Parole" },
+      { name: "author", content: "Maria che Scioglie i Nodi" },
+      { property: "og:title", content: "Novena a Maria che Scioglie i Nodi" },
+      { property: "og:description", content: "La Novena delle 9 Parole" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
