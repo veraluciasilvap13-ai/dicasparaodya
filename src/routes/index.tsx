@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { createElement, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const OFFER_DELAY_MS = 34 * 60 * 1000 + 28 * 1000;
 const CHECKOUT_URL = "https://pay.hotmart.com/R107974728Q?checkoutMode=10";
@@ -68,10 +68,33 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const [showOffer, setShowOffer] = useState(false);
+  const playerHostRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timer = window.setTimeout(() => setShowOffer(true), OFFER_DELAY_MS);
     return () => window.clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const host = playerHostRef.current;
+    if (!host || host.childElementCount > 0) return;
+
+    const player = document.createElement("vturb-smartplayer");
+    player.id = "vid-6acf765c942fcaa25b9befee";
+    player.style.display = "block";
+    player.style.margin = "0 auto";
+    player.style.width = "100%";
+    player.style.maxWidth = "400px";
+
+    const placeholder = document.createElement("div");
+    placeholder.className = "vturb-player-placeholder";
+    placeholder.style.position = "relative";
+    placeholder.style.width = "100%";
+    placeholder.style.padding = "120.72072072072073% 0 0";
+    placeholder.style.zIndex = "0";
+    placeholder.style.backgroundColor = "black";
+    player.appendChild(placeholder);
+    host.appendChild(player);
   }, []);
 
   const handleCheckout = () => {
@@ -107,23 +130,7 @@ function Index() {
           </p>
 
           <div className="mx-auto mt-4 w-full max-w-[365px] rounded-[7px] border border-video-frame bg-video-frame p-[16px] pb-0 shadow-video">
-            {createElement(
-              "vturb-smartplayer",
-              {
-                id: "vid-6acf765c942fcaa25b9befee",
-                style: { display: "block", margin: "0 auto", width: "100%", maxWidth: "400px" },
-              },
-              createElement("div", {
-                className: "vturb-player-placeholder",
-                style: {
-                  position: "relative",
-                  width: "100%",
-                  padding: "120.72072072072073% 0 0",
-                  zIndex: 0,
-                  backgroundColor: "black",
-                },
-              }),
-            )}
+            <div ref={playerHostRef} className="min-h-[400px]" />
           </div>
 
           {showOffer && (
