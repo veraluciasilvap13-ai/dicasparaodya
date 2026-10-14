@@ -98,6 +98,31 @@ function Index() {
     playerScript.async = true;
     playerScript.dataset["vturbPlayer"] = "6acf765c942fcaa25b9befee";
     document.head.appendChild(playerScript);
+
+    // Autoplay: start the video as soon as the player is ready, muted if the
+    // browser blocks autoplay with sound.
+    const tryAutoplay = window.setInterval(() => {
+      const smartplayer = (
+        window as unknown as {
+          smartplayer?: { instances?: Array<{ play: () => void; mute?: (m: boolean) => void }> };
+        }
+      ).smartplayer;
+      const instance = smartplayer?.instances?.[0];
+      if (!instance) return;
+      window.clearInterval(tryAutoplay);
+      try {
+        instance.play();
+      } catch {
+        try {
+          instance.mute?.(true);
+          instance.play();
+        } catch {
+          /* autoplay blocked by the browser */
+        }
+      }
+    }, 500);
+    window.setTimeout(() => window.clearInterval(tryAutoplay), 30000);
+    return () => window.clearInterval(tryAutoplay);
   }, []);
 
   const handleCheckout = () => {
