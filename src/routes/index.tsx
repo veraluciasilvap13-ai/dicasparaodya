@@ -54,10 +54,6 @@ export const Route = createFileRoute("/")({
           "!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);",
       },
       {
-        src: "https://scripts.converteai.net/36beff1e-b251-48ad-bc1e-db52402befba/players/6acf765c942fcaa25b9befee/v4/player.js",
-        async: true,
-      },
-      {
         children:
           "!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1780647376083252');fbq('track','PageView');",
       },
@@ -95,6 +91,13 @@ function Index() {
     placeholder.style.backgroundColor = "black";
     player.appendChild(placeholder);
     host.appendChild(player);
+
+    const playerScript = document.createElement("script");
+    playerScript.src =
+      "https://scripts.converteai.net/36beff1e-b251-48ad-bc1e-db52402befba/players/6acf765c942fcaa25b9befee/v4/player.js";
+    playerScript.async = true;
+    playerScript.dataset.vturbPlayer = "6acf765c942fcaa25b9befee";
+    document.head.appendChild(playerScript);
   }, []);
 
   const handleCheckout = () => {
