@@ -1,4 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useRef, useState } from "react";
+
+const OFFER_DELAY_MS = 34 * 60 * 1000 + 28 * 1000;
+const CHECKOUT_URL = "https://pay.hotmart.com/R107974728Q?checkoutMode=10";
+
+declare global {
+  interface Window {
+    fbq?: (...args: unknown[]) => void;
+  }
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -16,11 +26,81 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [
+      {
+        rel: "preload",
+        href: "https://scripts.converteai.net/36beff1e-b251-48ad-bc1e-db52402befba/players/6acf765c942fcaa25b9befee/v4/player.js",
+        as: "script",
+      },
+      {
+        rel: "preload",
+        href: "https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js",
+        as: "script",
+      },
+      {
+        rel: "preload",
+        href: "https://cdn.converteai.net/36beff1e-b251-48ad-bc1e-db52402befba/6acf74ffbabbf50015460d62/main.m3u8",
+        as: "fetch",
+        crossOrigin: "anonymous",
+      },
+      { rel: "dns-prefetch", href: "https://cdn.converteai.net" },
+      { rel: "dns-prefetch", href: "https://scripts.converteai.net" },
+      { rel: "dns-prefetch", href: "https://images.converteai.net" },
+      { rel: "dns-prefetch", href: "https://license.vturb.com" },
+    ],
+    scripts: [
+      {
+        children:
+          "!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);",
+      },
+      {
+        src: "https://scripts.converteai.net/36beff1e-b251-48ad-bc1e-db52402befba/players/6acf765c942fcaa25b9befee/v4/player.js",
+        async: true,
+      },
+      {
+        children:
+          "!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1780647376083252');fbq('track','PageView');",
+      },
+    ],
   }),
   component: Index,
 });
 
 function Index() {
+  const [showOffer, setShowOffer] = useState(false);
+  const playerHostRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setShowOffer(true), OFFER_DELAY_MS);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const host = playerHostRef.current;
+    if (!host || host.childElementCount > 0) return;
+
+    const player = document.createElement("vturb-smartplayer");
+    player.id = "vid-6acf765c942fcaa25b9befee";
+    player.style.display = "block";
+    player.style.margin = "0 auto";
+    player.style.width = "100%";
+    player.style.maxWidth = "400px";
+
+    const placeholder = document.createElement("div");
+    placeholder.className = "vturb-player-placeholder";
+    placeholder.style.position = "relative";
+    placeholder.style.width = "100%";
+    placeholder.style.padding = "120.72072072072073% 0 0";
+    placeholder.style.zIndex = "0";
+    placeholder.style.backgroundColor = "black";
+    player.appendChild(placeholder);
+    host.appendChild(player);
+  }, []);
+
+  const handleCheckout = () => {
+    window.fbq?.("track", "InitiateCheckout");
+  };
+
   return (
     <main className="min-h-screen bg-page-surround font-sans text-foreground">
       <div className="mx-auto min-h-screen w-full max-w-[414px] bg-background shadow-page">
@@ -50,20 +130,34 @@ function Index() {
           </p>
 
           <div className="mx-auto mt-4 w-full max-w-[365px] rounded-[7px] border border-video-frame bg-video-frame p-[16px] pb-0 shadow-video">
-            <div className="flex aspect-[332/414] w-full flex-col items-start justify-center bg-video px-[17px] text-video-foreground">
-              <p className="text-[16px] font-bold">Hai già iniziato a guardare questo video</p>
-              <div className="mt-[18px] ml-[54px] space-y-[12px]">
-                <button type="button" className="flex items-center gap-[11px] text-left text-[13px] font-bold">
-                  <span className="flex size-[29px] items-center justify-center rounded-full border-2 border-video-foreground text-[14px]">▶</span>
-                  Continuare da dove eri rimasto?
-                </button>
-                <button type="button" className="flex items-center gap-[11px] text-left text-[13px] font-bold">
-                  <span className="flex size-[29px] items-center justify-center rounded-full border-2 border-video-foreground text-[19px]">↶</span>
-                  Guardare dall'inizio?
-                </button>
-              </div>
-            </div>
+            <div ref={playerHostRef} className="min-h-[400px]" />
           </div>
+
+          {showOffer && (
+            <div className="mx-auto mt-8 max-w-[365px] text-center" data-delayed-offer>
+              <a
+                href={CHECKOUT_URL}
+                onClick={handleCheckout}
+                className="block rounded-[8px] bg-checkout px-5 py-7 text-[20px] font-bold uppercase leading-[1.22] text-checkout-foreground shadow-checkout"
+              >
+                Voglio contribuire e sciogliere i miei nodi ora!
+              </a>
+              <p className="mt-3 px-2 text-[15px] leading-[1.45] text-offer-copy">
+                Prega per nove giorni. Se i nodi non iniziano a sciogliersi, il sacerdote ti
+                restituirà per intero il tuo contributo e la novena resterà comunque tua.
+              </p>
+            </div>
+          )}
+
+          <noscript>
+            <img
+              height="1"
+              width="1"
+              className="hidden"
+              src="https://www.facebook.com/tr?id=1780647376083252&ev=PageView&noscript=1"
+              alt=""
+            />
+          </noscript>
 
           <footer className="mt-[26px] border-t border-divider pt-[20px] text-center text-gold">
             <span className="mx-auto flex size-[29px] items-center justify-center rounded-full border border-gold text-[21px] leading-none">†</span>
