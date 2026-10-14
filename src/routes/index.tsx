@@ -96,7 +96,7 @@ function Index() {
     playerScript.src =
       "https://scripts.converteai.net/36beff1e-b251-48ad-bc1e-db52402befba/players/6acf765c942fcaa25b9befee/v4/player.js";
     playerScript.async = true;
-    playerScript.dataset.vturbPlayer = "6acf765c942fcaa25b9befee";
+    playerScript.dataset["vturbPlayer"] = "6acf765c942fcaa25b9befee";
     document.head.appendChild(playerScript);
   }, []);
 
