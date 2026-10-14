@@ -72,9 +72,13 @@
   --color-video-frame: var(--video-frame);
   --color-divider: var(--divider);
   --color-footer-muted: var(--footer-muted);
+  --color-checkout: var(--checkout);
+  --color-checkout-foreground: var(--checkout-foreground);
+  --color-offer-copy: var(--offer-copy);
   --shadow-page: 0 0 13px var(--page-shadow);
   --shadow-header: 0 2px 5px var(--header-shadow);
   --shadow-video: 0 9px 21px var(--video-shadow);
+  --shadow-checkout: 0 7px 18px var(--checkout-shadow);
 }
 
 :root {
@@ -125,6 +129,10 @@
   --page-shadow: oklch(0.36 0.02 60 / 0.16);
   --header-shadow: oklch(0.2 0.03 250 / 0.26);
   --video-shadow: oklch(0.42 0.035 62 / 0.16);
+  --checkout: oklch(0.57 0.14 151);
+  --checkout-foreground: oklch(1 0 0);
+  --offer-copy: oklch(0.47 0.012 70);
+  --checkout-shadow: oklch(0.45 0.1 150 / 0.24);
 }
 
 .dark {
