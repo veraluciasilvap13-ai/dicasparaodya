@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import { hasReachedOfferTime } from "@/lib/offer-timing";
 
-const OFFER_DELAY_MS = 34 * 60 * 1000 + 28 * 1000;
 const CHECKOUT_URL = "https://pay.hotmart.com/R107974728Q?checkoutMode=10";
 
 declare global {
@@ -59,8 +59,23 @@ function Index() {
   const playerHostRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setShowOffer(true), OFFER_DELAY_MS);
-    return () => window.clearTimeout(timer);
+    let revealed = false;
+    const checkPlaybackTime = () => {
+      const player = playerHostRef.current?.querySelector<HTMLElement & { currentTime?: number }>(
+        "vturb-smartplayer",
+      );
+      if (revealed || !hasReachedOfferTime(player?.currentTime ?? 0)) return;
+      revealed = true;
+      setShowOffer(true);
+    };
+    // Read the player's actual video clock, including restored playback and seeks.
+    const timer = window.setInterval(checkPlaybackTime, 250);
+    document.addEventListener("visibilitychange", checkPlaybackTime);
+    checkPlaybackTime();
+    return () => {
+      window.clearInterval(timer);
+      document.removeEventListener("visibilitychange", checkPlaybackTime);
+    };
   }, []);
 
   useEffect(() => {
