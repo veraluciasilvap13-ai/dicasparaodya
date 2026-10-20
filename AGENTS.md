@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Determine delayed-offer visibility from the Vturb element's playback time, not a page-load timer, so resumed playback and seeking reveal the offer at the configured video threshold.
