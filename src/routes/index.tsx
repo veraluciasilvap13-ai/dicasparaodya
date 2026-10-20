@@ -13,20 +13,16 @@ declare global {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Novena a Maria che Scioglie i Nodi" },
-      {
-        name: "description",
-        content: "Ascolta le 9 parole della novena a Maria che Scioglie i Nodi.",
-      },
-      { property: "og:title", content: "Novena a Maria che Scioglie i Nodi" },
-      {
-        property: "og:description",
-        content: "Ascolta le 9 parole della novena a Maria che Scioglie i Nodi.",
-      },
+      { title: "Dicas Cotidianas" },
+      { name: "description", content: "Dicas Cotidianas" },
+      { property: "og:title", content: "Dicas Cotidianas" },
+      { property: "og:description", content: "Dicas Cotidianas" },
+      { property: "og:url", content: "https://dicascotidianas.lovable.app/" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "canonical", href: "https://dicascotidianas.lovable.app/" },
       {
         rel: "preload",
         href: "https://scripts.converteai.net/36beff1e-b251-48ad-bc1e-db52402befba/players/6acf765c942fcaa25b9befee/v4/player.js",
@@ -52,10 +48,6 @@ export const Route = createFileRoute("/")({
       {
         children:
           "!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);",
-      },
-      {
-        children:
-          "!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1780647376083252');fbq('track','PageView');",
       },
     ],
   }),
@@ -125,7 +117,10 @@ function Index() {
     return () => window.clearInterval(tryAutoplay);
   }, []);
 
+  const checkoutTracked = useRef(false);
   const handleCheckout = () => {
+    if (checkoutTracked.current) return;
+    checkoutTracked.current = true;
     window.fbq?.("track", "InitiateCheckout");
   };
 
@@ -177,15 +172,6 @@ function Index() {
             </div>
           )}
 
-          <noscript>
-            <img
-              height="1"
-              width="1"
-              className="hidden"
-              src="https://www.facebook.com/tr?id=1780647376083252&ev=PageView&noscript=1"
-              alt=""
-            />
-          </noscript>
 
           <footer className="mt-[26px] border-t border-divider pt-[20px] text-center text-gold">
             <span className="mx-auto flex size-[29px] items-center justify-center rounded-full border border-gold text-[21px] leading-none">†</span>
