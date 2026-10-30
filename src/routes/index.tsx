@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
       { rel: "canonical", href: "https://dicascotidianas.lovable.app/" },
       {
         rel: "preload",
-        href: "https://scripts.converteai.net/36beff1e-b251-48ad-bc1e-db52402befba/players/6acf765c942fcaa25b9befee/v4/player.js",
+        href: "https://scripts.converteai.net/8e3d38fc-92fe-4a74-9b67-e8c32032f004/players/6ae3dad2a1db2408a36730a3/v4/player.js",
         as: "script",
       },
       {
@@ -35,7 +35,7 @@ export const Route = createFileRoute("/")({
       },
       {
         rel: "preload",
-        href: "https://cdn.converteai.net/36beff1e-b251-48ad-bc1e-db52402befba/6acf74ffbabbf50015460d62/main.m3u8",
+        href: "https://cdn.converteai.net/8e3d38fc-92fe-4a74-9b67-e8c32032f004/6ae3da86f2699dc279ce83d2/main.m3u8",
         as: "fetch",
         crossOrigin: "anonymous",
       },
@@ -83,7 +83,7 @@ function Index() {
     if (!host || host.childElementCount > 0) return;
 
     const player = document.createElement("vturb-smartplayer");
-    player.id = "vid-6acf765c942fcaa25b9befee";
+    player.id = "vid-6ae3dad2a1db2408a36730a3";
     player.style.display = "block";
     player.style.margin = "0 auto";
     player.style.width = "100%";
@@ -93,7 +93,7 @@ function Index() {
     placeholder.className = "vturb-player-placeholder";
     placeholder.style.position = "relative";
     placeholder.style.width = "100%";
-    placeholder.style.padding = "120.72072072072073% 0 0";
+    placeholder.style.padding = "216.21621621621622% 0 0";
     placeholder.style.zIndex = "0";
     placeholder.style.backgroundColor = "black";
     player.appendChild(placeholder);
@@ -101,9 +101,9 @@ function Index() {
 
     const playerScript = document.createElement("script");
     playerScript.src =
-      "https://scripts.converteai.net/36beff1e-b251-48ad-bc1e-db52402befba/players/6acf765c942fcaa25b9befee/v4/player.js";
+      "https://scripts.converteai.net/8e3d38fc-92fe-4a74-9b67-e8c32032f004/players/6ae3dad2a1db2408a36730a3/v4/player.js";
     playerScript.async = true;
-    playerScript.dataset["vturbPlayer"] = "6acf765c942fcaa25b9befee";
+    playerScript.dataset["vturbPlayer"] = "6ae3dad2a1db2408a36730a3";
     document.head.appendChild(playerScript);
 
     // Autoplay: start the video as soon as the player is ready, muted if the
