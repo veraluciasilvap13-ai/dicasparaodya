@@ -1,6 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { hasReachedOfferTime } from "@/lib/offer-timing";
+import headAsset from "@/assets/head.png.asset.json";
+import lashAsset from "@/assets/lash.png.asset.json";
+import suAsset from "@/assets/su.png.asset.json";
+import lgAsset from "@/assets/lg.png.asset.json";
 
 const CHECKOUT_URL = "https://pay.hotmart.com/R107974728Q?checkoutMode=10";
 
@@ -142,30 +146,27 @@ function Index() {
   return (
     <main className="min-h-screen bg-page-surround font-sans text-foreground">
       <div className="mx-auto min-h-screen w-full max-w-[414px] bg-background shadow-page">
-        <header className="flex h-[45px] items-center justify-center gap-3 bg-primary px-5 text-primary-foreground shadow-header">
-          <span className="flex size-5 shrink-0 items-center justify-center rounded-full border border-header-mark text-[15px] leading-none text-header-mark">
-            †
-          </span>
-          <div className="leading-tight">
-            <p className="font-serif text-[11px] font-semibold">
-              Novena a Maria che Scioglie i Nodi
-            </p>
-            <p className="mt-0.5 text-[8px] font-bold uppercase tracking-[0.08em] text-header-subtitle">
-              <span className="mr-1 text-status">●</span>
-              La diretta di oggi termina tra poco
-            </p>
-          </div>
+        <header className="bg-primary shadow-header">
+          <img
+            src={lashAsset.url}
+            alt="Novena a Maria che Scioglie i Nodi — La diretta di oggi termina tra poco"
+            className="mx-auto block h-[45px] w-auto max-w-full object-contain"
+          />
         </header>
 
         <section className="px-3 pt-[14px]">
-          <h1 className="mx-auto max-w-[372px] text-center font-serif text-[20px] leading-[1.28] text-title">
-            Ascolta Queste <em className="font-normal text-gold">9 Parole</em> Prima di Dormire e
-            Svegliati con il <em className="font-normal text-gold">Nodo del Denaro</em> Sciolto
+          <h1 className="mx-auto max-w-[372px]">
+            <img
+              src={headAsset.url}
+              alt="Ascolta Queste 9 Parole Prima di Dormire e Svegliati con il Nodo del Denaro Sciolto"
+              className="mx-auto block w-full"
+            />
           </h1>
-          <p className="mx-auto mt-2 max-w-[330px] text-center text-[13px] leading-[1.5] text-muted-foreground">
-            Clicca qui sotto, guarda fino alla fine e scopri l'ordine giusto in cui la Madonna che
-            Scioglie i Nodi ti ascolta.
-          </p>
+          <img
+            src={suAsset.url}
+            alt="Clicca qui sotto, guarda fino alla fine e scopri l'ordine giusto in cui la Madonna che Scioglie i Nodi ti ascolta."
+            className="mx-auto mt-2 block w-full max-w-[330px]"
+          />
 
           <div className="mx-auto mt-4 w-full max-w-[365px] rounded-[7px] border border-video-frame bg-video-frame p-[16px] pb-0 shadow-video">
             <div ref={playerHostRef} className="min-h-[400px]" />
@@ -188,10 +189,12 @@ function Index() {
           )}
 
 
-          <footer className="mt-[26px] border-t border-divider pt-[20px] text-center text-gold">
-            <span className="mx-auto flex size-[29px] items-center justify-center rounded-full border border-gold text-[21px] leading-none">†</span>
-            <p className="mt-3 font-serif text-[12px] uppercase tracking-[0.2em]">Maria che Scioglie i Nodi</p>
-            <p className="mt-2 text-[9px] tracking-[0.12em] text-footer-muted">La Novena delle 9 Parole</p>
+          <footer className="mt-[26px] border-t border-divider pt-[20px] text-center">
+            <img
+              src={lgAsset.url}
+              alt="Maria che Scioglie i Nodi — La Novena delle 9 Parole"
+              className="mx-auto block w-full max-w-[365px]"
+            />
           </footer>
         </section>
       </div>
