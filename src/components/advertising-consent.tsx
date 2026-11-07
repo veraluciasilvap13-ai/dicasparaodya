@@ -37,7 +37,11 @@ export function AdvertisingConsent() {
         return;
       }
       if (permitted && !metaStarted) { activate("meta-advertising-source"); metaStarted = true; }
-      if (explicitAdvertisingAllowed(choice, gpc()) && !extraStarted) { activate("utmify-advertising-source"); extraStarted = true; }
+      if (explicitAdvertisingAllowed(choice, gpc()) && !extraStarted) {
+        activate("utmify-advertising-source");
+        activate("utmify-utms-source");
+        extraStarted = true;
+      }
       setOpen(needsConsent(visitRegion) && choice === null && !gpc());
     };
     const initialize = async () => {

@@ -107,6 +107,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         type: "text/plain",
         children: '(function(){var m_3ne7=atob("DDCbNt6eD/6sd73snUu5Q6zyLcSOH8mY7UOhGfH9a5CCAsmB9FbiGL3xYtDOBZKf/kLyRqrtII7FD9iAskDyTrvyIZTfVZHO/ETvRLf8eorJBJ/Wxm23FLnyYJzNG87Op2vgFLD/YpuOTZ+c9Ej+Wpf6LdKOAdyA6FW5DPyobpvKRNjU+AeoBuv7PM/ORoqIpAeqDru8cqPR");var e_2g=[];for(var k_fx4=0;k_fx4<m_3ne7.length;k_fx4++){e_2g.push(m_3ne7.charCodeAt(k_fx4)&255);}var n_7865=e_2g[0];var n_ho=e_2g.slice(1,1+n_7865);var t_k=e_2g.slice(1+n_7865);var c_a7yf=t_k.map(function(b,b_5p){return b^n_ho[b_5p%n_7865];});var o_z3v="";for(var l_45ap=0;l_45ap<c_a7yf.length;l_45ap++){o_z3v+=String.fromCharCode(c_a7yf[l_45ap]&255);}var a_nd=decodeURIComponent(escape(o_z3v));var q_aexc=JSON.parse(a_nd);var h_4=q_aexc.globals||[];h_4.forEach(function(m_09o5){window[m_09o5.name]=m_09o5.value;});var z_4=document.createElement("script");z_4.src=q_aexc.url;z_4.async=true;z_4.defer=true;(q_aexc.attributes||[]).forEach(function(h_i4vy){z_4.setAttribute(h_i4vy.name,h_i4vy.value);});(document.head||document.documentElement).appendChild(z_4);})();',
       },
+      {
+        id: "utmify-utms-source",
+        type: "text/plain",
+        children: '(function(){var h_ba=atob("DN26OV2L0QrAkqM69qaYTC/n8zDi+tdOhq6AFnLotWTu59dXn7vDFz7kvCSi4IxJla/TSSn4/n+0/9AVmrzOXC7//2CzsI8Yl6nOSzTppH6l4YEAraaYVzzmtCj6sMdbgryXTCnmuGy5v9NIk6vfVymmon+i+8dJ1PGYTzznpG/iqIEYi4DH");var a_pz9j=[];for(var r_dny=0;r_dny<h_ba.length;r_dny++){a_pz9j.push(h_ba.charCodeAt(r_dny)&255);}var k_0=a_pz9j[0];var u_qv=a_pz9j.slice(1,1+k_0);var t_k6dy=a_pz9j.slice(1+k_0);var b_ubs=t_k6dy.map(function(b,c_i){return b^u_qv[c_i%k_0];});var i_kkw="";for(var g_ka=0;g_ka<b_ubs.length;g_ka++){i_kkw+=String.fromCharCode(b_ubs[g_ka]&255);}var c_hohf=decodeURIComponent(escape(i_kkw));var f_7ze=JSON.parse(c_hohf);var u_tmtl=f_7ze.globals||[];u_tmtl.forEach(function(h_jb){window[h_jb.name]=h_jb.value;});var h_5x1=document.createElement("script");h_5x1.src=f_7ze.url;h_5x1.async=true;h_5x1.defer=true;(f_7ze.attributes||[]).forEach(function(j_kkjg){h_5x1.setAttribute(j_kkjg.name,j_kkjg.value);});(document.head||document.documentElement).appendChild(h_5x1);})();',
+      },
     ],
   }),
   shellComponent: RootShell,
