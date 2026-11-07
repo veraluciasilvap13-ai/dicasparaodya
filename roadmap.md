@@ -1,0 +1,3 @@
+- [x] Remove only Meta pixel 1718508046360978.
+- [x] Install the supplied UTMify script with the approved regional consent notice and linked privacy disclosure.
+- [x] Verify consent, withdrawal, remaining pixel, and delayed checkout behavior with intercepted third-party scripts; live provider receipt is not verified.

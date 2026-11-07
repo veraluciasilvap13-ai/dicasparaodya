@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Determine delayed-offer visibility from the Vturb element's playback time, not a page-load timer, so resumed playback and seeking reveal the offer at the configured video threshold.
+- Keep advertising head snippets inert until the shared browser consent controller permits execution; UTMify requires explicit acceptance because it can collect form identifiers. Reload on withdrawal to stop third-party listeners without a revocation API.
