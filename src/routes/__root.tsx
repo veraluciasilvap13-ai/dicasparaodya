@@ -97,7 +97,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     scripts: [
       {
         children:
-          "!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');if(!window.__pvSent){window.__pvSent=true;fbq('set','autoConfig',false,'1718508046360978');fbq('set','autoConfig',false,'8773301692756198');fbq('init','1718508046360978',{},{agent:'lovable'});fbq('init','8773301692756198',{},{agent:'lovable'});fbq('track','PageView');}",
+          "!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');if(!window.__pvSent){window.__pvSent=true;fbq('set','autoConfig',false,'8773301692756198');fbq('init','8773301692756198',{},{agent:'lovable'});fbq('track','PageView');}",
       },
     ],
   }),
@@ -115,13 +115,6 @@ function RootShell({ children }: { children: ReactNode }) {
       </head>
       <body>
         <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: "none" }}
-            src="https://www.facebook.com/tr?id=1718508046360978&ev=PageView&noscript=1"
-            alt=""
-          />
           <img
             height="1"
             width="1"
