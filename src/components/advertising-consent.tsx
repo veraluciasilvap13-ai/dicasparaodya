@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { startMetaPixel } from "@/lib/meta-pixel";
 import { sendMetaPageView } from "@/lib/meta-capi.functions";
-import { CONSENT_KEY, NOTICE_TEXT, NOTICE_VERSION, explicitAdvertisingAllowed } from "@/lib/advertising-consent";
+import { CONSENT_KEY, NOTICE_TEXT, NOTICE_VERSION, explicitAdvertisingAllowed, visitorTimeZone } from "@/lib/advertising-consent";
 
 type ConsentRecord = { visitor: string; choice: boolean; region: string | null; at: string; version: string; notice: string };
 function readHistory(): ConsentRecord[] {
@@ -15,9 +15,7 @@ export function AdvertisingConsent() {
   const [region, setRegion] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
   useEffect(() => {
-    let active = true;
     let extraStarted = false;
-    let visitRegion: string | null = null;
     const gpc = () => (navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl === true;
     const activate = (id: string) => {
       const source = document.getElementById(id);
@@ -52,15 +50,9 @@ export function AdvertisingConsent() {
       }
       setOpen(choice === null && !gpc());
     };
-    const initialize = async () => {
-      try {
-        const response = await fetch("/cdn-cgi/trace", { signal: AbortSignal.timeout(2000) });
-        if (!response.ok) throw new Error("Region unavailable");
-        const fields = Object.fromEntries((await response.text()).trim().split("\n").map(line => line.split("=")));
-        if (fields.h === window.location.host && /^[A-Z]{2}$/.test(fields.loc || "")) visitRegion = fields.loc;
-      } catch { /* Unknown region uses consent-required default. */ }
-      if (!active) return;
-      setRegion(visitRegion);
+    const initialize = () => {
+      const timeZone = visitorTimeZone();
+      setRegion(timeZone ? `timezone:${timeZone}` : null);
       setReady(true);
       apply();
     };
@@ -68,8 +60,8 @@ export function AdvertisingConsent() {
     const storageChanged = (event: StorageEvent) => { if (event.key === CONSENT_KEY) apply(); };
     window.addEventListener("advertising-choice", changed);
     window.addEventListener("storage", storageChanged);
-    void initialize();
-    return () => { active = false; window.removeEventListener("advertising-choice", changed); window.removeEventListener("storage", storageChanged); };
+    initialize();
+    return () => { window.removeEventListener("advertising-choice", changed); window.removeEventListener("storage", storageChanged); };
   }, []);
   const save = (choice: boolean) => {
     const history = readHistory();

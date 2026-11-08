@@ -50,7 +50,7 @@ $payload = [
     ]
 ];
 
-$ch = curl_init("https://facebook.com{$pixel_id}/events?access_token={$access_token}&test_event_code=TEST2577");
+$ch = curl_init("https://graph.facebook.com/v26.0/{$pixel_id}/events?access_token={$access_token}");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));

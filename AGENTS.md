@@ -11,3 +11,4 @@
 
 - Determine delayed-offer visibility from the Vturb element's playback time, not a page-load timer, so resumed playback and seeking reveal the offer at the configured video threshold.
 - Keep advertising head snippets inert until the shared browser consent controller records explicit acceptance; UTMify requires acceptance because it can collect form identifiers. Reload on withdrawal to stop third-party listeners without a revocation API.
+- Read the browser timezone locally as a consent-record hint, never as verified geography or advertising permission; Hostinger does not provide Cloudflare's trace endpoint.

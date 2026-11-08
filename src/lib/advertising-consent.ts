@@ -4,3 +4,8 @@ export const NOTICE_TEXT = "Con il tuo consenso, Meta (Pixel di Facebook) e UTMi
 export function explicitAdvertisingAllowed(choice: boolean | null, gpc: boolean) {
   return choice === true && !gpc;
 }
+
+// A timezone is a local hint, not a verified country or permission to track.
+export function visitorTimeZone(resolve = () => Intl.DateTimeFormat().resolvedOptions().timeZone): string | null {
+  try { return resolve() || null; } catch { return null; }
+}

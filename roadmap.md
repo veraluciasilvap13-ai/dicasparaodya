@@ -5,3 +5,4 @@
 - [x] Add terms route, update privacy, and add footer advertiser identity plus AI notice using Amanda Carolina Da Silva Pinto's supplied details.
 - [x] Verify no Meta/UTMify request fires before acceptance, UTMify fires after acceptance, and delayed checkout still works.
 - [x] Send the current URL to /api-pixel.php on load and on every route change, with a test for the payload shape.
+- [x] Correct the PHP Meta events endpoint and remove test mode; replace the Cloudflare lookup with a local timezone hint and verify consent remains explicit. PHP execution and live Meta receipt on Hostinger remain unverified.
