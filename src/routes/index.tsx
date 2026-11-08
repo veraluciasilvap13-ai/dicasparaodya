@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { hasReachedOfferTime } from "@/lib/offer-timing";
 import headAsset from "@/assets/head.png.asset.json";
@@ -7,12 +7,6 @@ import suAsset from "@/assets/su.png.asset.json";
 import lgAsset from "@/assets/lg.png.asset.json";
 
 const CHECKOUT_URL = "https://pay.hotmart.com/R107974728Q?checkoutMode=10";
-
-declare global {
-  interface Window {
-    fbq?: (...args: unknown[]) => void;
-  }
-}
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -136,13 +130,6 @@ function Index() {
     return () => window.clearInterval(tryAutoplay);
   }, []);
 
-  const checkoutTracked = useRef(false);
-  const handleCheckout = () => {
-    if (checkoutTracked.current) return;
-    checkoutTracked.current = true;
-    window.fbq?.("track", "InitiateCheckout");
-  };
-
   return (
     <main className="min-h-screen bg-page-surround font-sans text-foreground">
       <div className="mx-auto min-h-screen w-full max-w-[414px] bg-background shadow-page">
@@ -176,7 +163,6 @@ function Index() {
             <div className="mx-auto mt-8 max-w-[365px] text-center" data-delayed-offer>
               <a
                 href={CHECKOUT_URL}
-                onClick={handleCheckout}
                 className="block rounded-[8px] bg-checkout px-5 py-7 text-[20px] font-bold uppercase leading-[1.22] text-checkout-foreground shadow-checkout"
               >
                 Voglio contribuire e sciogliere i miei nodi ora!
@@ -195,6 +181,11 @@ function Index() {
               alt="Maria che Scioglie i Nodi — La Novena delle 9 Parole"
               className="mx-auto block w-full max-w-[365px]"
             />
+            <div className="mx-auto max-w-[365px] px-2 pb-5 pt-4 text-[11px] leading-[1.45] text-muted-foreground">
+              <p>Contenuto digitale con elementi vocali o visivi creati o modificati con strumenti di intelligenza artificiale.</p>
+              <p className="mt-2">Responsabile: Amanda Carolina Da Silva Pinto, produttrice indipendente – persona fisica. Rua Maria do Rosário de Carvalho, 131, Bonfim, São João del-Rei, MG, 3630-738, Brasile. Supporto e privacy: <a href="mailto:comprasuporte146@gmail.com" className="underline">comprasuporte146@gmail.com</a>.</p>
+              <p className="mt-2"><Link to="/privacy" className="underline">Privacy</Link> · <Link to="/termini" className="underline">Termini</Link></p>
+            </div>
           </footer>
         </section>
       </div>

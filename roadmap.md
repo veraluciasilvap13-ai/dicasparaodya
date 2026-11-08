@@ -1,3 +1,6 @@
 - [x] Remove only Meta pixel 1718508046360978.
 - [x] Install the supplied UTMify script with the approved regional consent notice and linked privacy disclosure.
 - [x] Verify consent, withdrawal, remaining pixel, and delayed checkout behavior with intercepted third-party scripts; live provider receipt is not verified.
+- [x] Remove Meta pixel 8773301692756198 and make all advertising scripts load only after explicit acceptance.
+- [x] Add terms route, update privacy, and add footer advertiser identity plus AI notice using Amanda Carolina Da Silva Pinto's supplied details.
+- [x] Verify no Meta/UTMify request fires before acceptance, UTMify fires after acceptance, and delayed checkout still works.

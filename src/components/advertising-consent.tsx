@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { CONSENT_KEY, NOTICE_TEXT, NOTICE_VERSION, advertisingAllowed, explicitAdvertisingAllowed, needsConsent } from "@/lib/advertising-consent";
+import { CONSENT_KEY, NOTICE_TEXT, NOTICE_VERSION, explicitAdvertisingAllowed } from "@/lib/advertising-consent";
 
 type ConsentRecord = { visitor: string; choice: boolean; region: string | null; at: string; version: string; notice: string };
 function readHistory(): ConsentRecord[] {
@@ -14,7 +14,6 @@ export function AdvertisingConsent() {
   const [ready, setReady] = useState(false);
   useEffect(() => {
     let active = true;
-    let metaStarted = false;
     let extraStarted = false;
     let visitRegion: string | null = null;
     const gpc = () => (navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl === true;
@@ -28,21 +27,18 @@ export function AdvertisingConsent() {
     const apply = () => {
       const history = readHistory();
       const choice = history.at(-1)?.choice ?? null;
-      const permitted = advertisingAllowed(visitRegion, choice, gpc());
       // Read the latest choice before every application; withdrawal reloads to
       // terminate third-party timers/listeners, which expose no revoke API.
-      if ((!permitted && metaStarted) || (!explicitAdvertisingAllowed(choice, gpc()) && extraStarted)) {
-        window.fbq?.("consent", "revoke");
+      if (!explicitAdvertisingAllowed(choice, gpc()) && extraStarted) {
         window.location.reload();
         return;
       }
-      if (permitted && !metaStarted) { activate("meta-advertising-source"); metaStarted = true; }
       if (explicitAdvertisingAllowed(choice, gpc()) && !extraStarted) {
         activate("utmify-advertising-source");
         activate("utmify-utms-source");
         extraStarted = true;
       }
-      setOpen(needsConsent(visitRegion) && choice === null && !gpc());
+      setOpen(choice === null && !gpc());
     };
     const initialize = async () => {
       try {
@@ -72,9 +68,10 @@ export function AdvertisingConsent() {
     window.dispatchEvent(new Event("advertising-choice"));
   };
   return <>
-    <div className="mx-auto flex max-w-[414px] flex-wrap justify-center gap-3 bg-background p-3 text-xs text-muted-foreground">
+      <div className="mx-auto flex max-w-[414px] flex-wrap justify-center gap-3 bg-background p-3 text-xs text-muted-foreground">
       <Button variant="link" size="sm" onClick={() => setOpen(true)} disabled={!ready}>Impostazioni cookie</Button>
       <Link to="/privacy" className="self-center underline">Privacy</Link>
+      <Link to="/termini" className="self-center underline">Termini</Link>
     </div>
     {open && <section role="dialog" aria-label="Preferenze cookie" className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-background p-4 shadow-page">
       <div className="mx-auto max-w-xl">
