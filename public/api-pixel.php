@@ -15,28 +15,25 @@ if (empty($pixel_id) || empty($access_token)) {
     exit; 
 }
 
-// CORREÇÃO DA LOVABLE: Pega o texto bruto e acha a URL de qualquer jeito
+// CORREÇÃO DA LOVABLE: Pega o texto bruto e limpa a URL perfeitamente
 $raw_input = file_get_contents('php://input');
 
 $url_atual = '';
 if (!empty($raw_input)) {
-    // Tenta ler como JSON padrão
     $input = json_decode($raw_input, true);
     if (isset($input['url'])) {
         $url_atual = $input['url'];
     } else {
-        // Se a Lovable mandou como texto puro limpo, limpa as aspas e chaves na marra
-        preg_match('/"url"\s*:\s*"([^"]+)"/', $raw_input, $matches);
-        if (isset($matches[1])) {
+        // CORREÇÃO EXATA AQUI: Captura o grupo 1 da expressão regular corretamente
+        if (preg_match('/"url"\s*:\s*"([^"]+)"/', $raw_input, $matches)) {
             $url_atual = $matches[1];
         } else {
-            // Se veio apenas o link direto no texto
             $url_atual = trim($raw_input);
         }
     }
 }
 
-// Se mesmo assim não achar a URL, usa o endereço padrão do seu site para o disparo não falhar
+// Se o texto vier vazio ou sem protocolo, força a URL base do seu domínio
 if (empty($url_atual) || strpos($url_atual, 'http') === false) {
     $url_atual = 'https://everydaysolutionslab.com';
 }
