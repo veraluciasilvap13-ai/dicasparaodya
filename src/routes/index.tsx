@@ -1,10 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { hasReachedOfferTime } from "@/lib/offer-timing";
-import headAsset from "@/assets/head.png.asset.json";
-import lashAsset from "@/assets/lash.png.asset.json";
-import suAsset from "@/assets/su.png.asset.json";
-import lgAsset from "@/assets/lg.png.asset.json";
 
 import { trackInitiateCheckout } from "@/lib/meta-pixel";
 const CHECKOUT_URL = "https://pay.hotmart.com/R107974728Q?checkoutMode=10";
@@ -136,7 +132,7 @@ function Index() {
       <div className="mx-auto min-h-screen w-full max-w-[414px] bg-background shadow-page">
         <header className="bg-primary shadow-header">
           <img
-            src={lashAsset.url}
+            src="/lash.png"
             alt="Novena a Maria che Scioglie i Nodi — La diretta di oggi termina tra poco"
             className="mx-auto block h-[45px] w-auto max-w-full object-contain"
           />
@@ -145,13 +141,13 @@ function Index() {
         <section className="px-3 pt-[14px]">
           <h1 className="mx-auto max-w-[372px]">
             <img
-              src={headAsset.url}
+              src="/head.png"
               alt="Ascolta Queste 9 Parole Prima di Dormire e Svegliati con il Nodo del Denaro Sciolto"
               className="mx-auto block w-full"
             />
           </h1>
           <img
-            src={suAsset.url}
+            src="/su.png"
             alt="Clicca qui sotto, guarda fino alla fine e scopri l'ordine giusto in cui la Madonna che Scioglie i Nodi ti ascolta."
             className="mx-auto mt-2 block w-full max-w-[330px]"
           />
@@ -179,7 +175,7 @@ function Index() {
 
           <footer className="mt-[26px] border-t border-divider pt-[20px] text-center">
             <img
-              src={lgAsset.url}
+              src="/lg.png"
               alt="Maria che Scioglie i Nodi — La Novena delle 9 Parole"
               className="mx-auto block w-full max-w-[365px]"
             />
