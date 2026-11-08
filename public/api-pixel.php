@@ -8,15 +8,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
 
-// Pega o ID e o Token do domínio da Hostinger automaticamente
-$pixel_id = $_ENV['META_PIXEL_ID'] ?? getenv('META_PIXEL_ID');
-$access_token = $_ENV['META_ACCESS_TOKEN'] ?? getenv('META_ACCESS_TOKEN');
+// Credenciais configuradas diretamente no código (Hardcoded para evitar falhas do servidor)
+$pixel_id = '8773301692756198'; 
+$access_token = 'EAAWd7WQaZByQBSzZCmTIeT5WeCpuu8y2Qw4ZA9uD92C7XOGBeQRdcICqaTZAXKxxoPp8FWrNSBqEdUOeoPLbrhKD5LP0xZBn70amZCBwWJ6hUAFG2R6FIr9K41T5L3EoGY6aZAG6Al4wwwYZBHVdUEQPL5TpnpCMcjVo3UbAJx9EPDIpdumZATHMh5pvJ41hECwZDZD';
 
-if (!$pixel_id || !$access_token) {
-    exit; // Para o script se as chaves não estiverem configuradas na Hostinger
+if (empty($pixel_id) || empty($access_token)) {
+    exit; 
 }
 
-// Lê o corpo da requisição enviado de forma inteligente pela Lovable
+// Lê o corpo da requisição enviado pela Lovable
 $raw_input = file_get_contents('php://input');
 
 // Decodifica o conteúdo para achar a URL
@@ -30,7 +30,7 @@ if (empty($url_atual) && strpos($raw_input, '"url":') !== false) {
 }
 
 if (empty($url_atual)) {
-    exit; // Se não achar nenhuma URL, encerra sem quebrar nada
+    exit; 
 }
 
 // Payload do PageView sem enviar nenhum dado sensível (100% seguro na Europa)
@@ -56,4 +56,3 @@ curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 
 $response = curl_exec($ch);
 curl_close($ch);
-
