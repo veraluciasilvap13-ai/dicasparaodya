@@ -1,4 +1,6 @@
-export const ROUTE_PING_ENDPOINT = "https://everydaysolutionslab.com/";
+// Same-origin path served by the PHP file in public/, so the browser never
+// needs a cross-origin permission check and the host runs the file directly.
+export const ROUTE_PING_ENDPOINT = "/api-pixel.php";
 
 export type RoutePingPayload = { url: string };
 
@@ -10,10 +12,9 @@ export function sendRoutePing(href: string): void {
   if (typeof window === "undefined") return;
   void fetch(ROUTE_PING_ENDPOINT, {
     method: "POST",
-    // text/plain keeps this a preflight-free request: the destination does not
-    // answer the browser's permission check, so JSON content-type would be
-    // blocked before sending. The body is still the JSON object below.
-    headers: { "Content-Type": "text/plain;charset=UTF-8" },
+    // Same-origin request: no preflight, and the PHP file reads the raw body
+    // and decodes it as the JSON object below.
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(routePingPayload(href)),
     credentials: "omit",
     keepalive: true,

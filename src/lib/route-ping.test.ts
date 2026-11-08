@@ -9,5 +9,5 @@ it("access notice body carries only the current URL", () => {
 });
 
 it("access notice posts to the supplied address", () => {
-  assert.equal(ROUTE_PING_ENDPOINT, "https://everydaysolutionslab.com/");
+  assert.equal(ROUTE_PING_ENDPOINT, "/api-pixel.php");
 });
