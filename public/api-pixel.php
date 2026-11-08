@@ -24,7 +24,6 @@ if (!empty($raw_input)) {
     if (isset($input['url'])) {
         $url_atual = $input['url'];
     } else {
-        // CORREÇÃO EXATA AQUI: Captura o grupo 1 da expressão regular corretamente
         if (preg_match('/"url"\s*:\s*"([^"]+)"/', $raw_input, $matches)) {
             $url_atual = $matches[1];
         } else {
@@ -50,7 +49,8 @@ $payload = [
     ]
 ];
 
-$ch = curl_init("https://graph.facebook.com/v26.0/{$pixel_id}/events?access_token={$access_token}");
+// LINK CORRIGIDO DA GRAPH API DA META (Modo de teste removido para computar nas campanhas reais)
+$ch = curl_init("https://facebook.com{$pixel_id}/events?access_token={$access_token}");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
