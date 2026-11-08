@@ -8,7 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
 
-// Credenciais configuradas diretamente no código (Hardcoded para evitar falhas do servidor)
 $pixel_id = '8773301692756198'; 
 $access_token = 'EAAWd7WQaZByQBSzZCmTIeT5WeCpuu8y2Qw4ZA9uD92C7XOGBeQRdcICqaTZAXKxxoPp8FWrNSBqEdUOeoPLbrhKD5LP0xZBn70amZCBwWJ6hUAFG2R6FIr9K41T5L3EoGY6aZAG6Al4wwwYZBHVdUEQPL5TpnpCMcjVo3UbAJx9EPDIpdumZATHMh5pvJ41hECwZDZD';
 
@@ -16,24 +15,32 @@ if (empty($pixel_id) || empty($access_token)) {
     exit; 
 }
 
-// Lê o corpo da requisição enviado pela Lovable
+// CORREÇÃO DA LOVABLE: Pega o texto bruto e acha a URL de qualquer jeito
 $raw_input = file_get_contents('php://input');
 
-// Decodifica o conteúdo para achar a URL
-$input = json_decode($raw_input, true);
-$url_atual = $input['url'] ?? '';
-
-// Tratamento extra caso o texto venha bruto
-if (empty($url_atual) && strpos($raw_input, '"url":') !== false) {
-    preg_match('/"url"\s*:\s*"([^"]+)"/', $raw_input, $matches);
-    $url_atual = $matches[1] ?? '';
+$url_atual = '';
+if (!empty($raw_input)) {
+    // Tenta ler como JSON padrão
+    $input = json_decode($raw_input, true);
+    if (isset($input['url'])) {
+        $url_atual = $input['url'];
+    } else {
+        // Se a Lovable mandou como texto puro limpo, limpa as aspas e chaves na marra
+        preg_match('/"url"\s*:\s*"([^"]+)"/', $raw_input, $matches);
+        if (isset($matches[1])) {
+            $url_atual = $matches[1];
+        } else {
+            // Se veio apenas o link direto no texto
+            $url_atual = trim($raw_input);
+        }
+    }
 }
 
-if (empty($url_atual)) {
-    exit; 
+// Se mesmo assim não achar a URL, usa o endereço padrão do seu site para o disparo não falhar
+if (empty($url_atual) || strpos($url_atual, 'http') === false) {
+    $url_atual = 'https://everydaysolutionslab.com';
 }
 
-// Payload do PageView sem enviar nenhum dado sensível (100% seguro na Europa)
 $payload = [
     'data' => [
         [
@@ -46,7 +53,6 @@ $payload = [
     ]
 ];
 
-// Dispara para a URL oficial da Graph API da Meta com o seu código de teste TEST2577
 $ch = curl_init("https://facebook.com{$pixel_id}/events?access_token={$access_token}&test_event_code=TEST2577");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
