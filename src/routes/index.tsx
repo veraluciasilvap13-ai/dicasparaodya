@@ -6,6 +6,7 @@ import lashAsset from "@/assets/lash.png.asset.json";
 import suAsset from "@/assets/su.png.asset.json";
 import lgAsset from "@/assets/lg.png.asset.json";
 
+import { trackInitiateCheckout } from "@/lib/meta-pixel";
 const CHECKOUT_URL = "https://pay.hotmart.com/R107974728Q?checkoutMode=10";
 
 export const Route = createFileRoute("/")({
@@ -163,6 +164,7 @@ function Index() {
             <div className="mx-auto mt-8 max-w-[365px] text-center" data-delayed-offer>
               <a
                 href={CHECKOUT_URL}
+                onClick={trackInitiateCheckout}
                 className="block rounded-[8px] bg-checkout px-5 py-7 text-[20px] font-bold uppercase leading-[1.22] text-checkout-foreground shadow-checkout"
               >
                 Voglio contribuire e sciogliere i miei nodi ora!

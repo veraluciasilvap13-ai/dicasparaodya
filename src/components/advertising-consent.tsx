@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
+import { startMetaPixel } from "@/lib/meta-pixel";
 import { CONSENT_KEY, NOTICE_TEXT, NOTICE_VERSION, explicitAdvertisingAllowed } from "@/lib/advertising-consent";
 
 type ConsentRecord = { visitor: string; choice: boolean; region: string | null; at: string; version: string; notice: string };
@@ -36,6 +37,7 @@ export function AdvertisingConsent() {
       if (explicitAdvertisingAllowed(choice, gpc()) && !extraStarted) {
         activate("utmify-advertising-source");
         activate("utmify-utms-source");
+        startMetaPixel();
         extraStarted = true;
       }
       setOpen(choice === null && !gpc());
