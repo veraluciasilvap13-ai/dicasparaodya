@@ -22,7 +22,10 @@ export function startMetaPixel() {
     document.head.appendChild(t);
   }
   window.fbq("init", META_PIXEL_ID, {}, { agent: "lovable" });
-  window.fbq("track", "PageView");
+  // Same event_id is sent to the Conversions API so Meta deduplicates.
+  const eventId = crypto.randomUUID();
+  window.fbq("track", "PageView", {}, { eventID: eventId });
+  return eventId;
 }
 
 export function metaPixelStarted() { return started; }

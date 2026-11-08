@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { startMetaPixel } from "@/lib/meta-pixel";
+import { sendMetaPageView } from "@/lib/meta-capi.functions";
 import { CONSENT_KEY, NOTICE_TEXT, NOTICE_VERSION, explicitAdvertisingAllowed } from "@/lib/advertising-consent";
 
 type ConsentRecord = { visitor: string; choice: boolean; region: string | null; at: string; version: string; notice: string };
@@ -37,8 +38,17 @@ export function AdvertisingConsent() {
       if (explicitAdvertisingAllowed(choice, gpc()) && !extraStarted) {
         activate("utmify-advertising-source");
         activate("utmify-utms-source");
-        startMetaPixel();
+        const eventId = startMetaPixel();
         extraStarted = true;
+        const latest = readHistory().at(-1);
+        if (eventId && latest?.choice === true) {
+          // Wait briefly so the pixel can set _fbp before the server reads cookies.
+          window.setTimeout(() => {
+            const now = readHistory().at(-1);
+            if (!now || !explicitAdvertisingAllowed(now.choice, gpc())) return;
+            void sendMetaPageView({ data: { eventId, eventSourceUrl: window.location.href, consent: { choice: true, version: now.version, at: now.at } } }).catch(() => {});
+          }, 1500);
+        }
       }
       setOpen(choice === null && !gpc());
     };
