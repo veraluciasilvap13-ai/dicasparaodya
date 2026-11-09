@@ -5,11 +5,9 @@ import { z } from "zod";
 const input = z.object({
   eventId: z.string().uuid(),
   eventSourceUrl: z.string().url().max(2000),
-  // Latest consent record, re-read in the browser right before sending.
-  consent: z.object({ choice: z.literal(true), version: z.string().max(50), at: z.string().max(40) }),
 });
 
-/** Sends PageView via Conversions API, only after explicit advertising acceptance. */
+/** Sends PageView via Conversions API with the same event_id as the browser pixel. */
 export const sendMetaPageView = createServerFn({ method: "POST" })
   .inputValidator((data) => input.parse(data))
   .handler(async ({ data }) => {

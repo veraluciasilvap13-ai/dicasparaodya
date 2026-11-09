@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { hasReachedOfferTime } from "@/lib/offer-timing";
 
 import { trackInitiateCheckout } from "@/lib/meta-pixel";
-const CHECKOUT_URL = "https://pay.hotmart.com/R107974728Q?checkoutMode=10";
+const CHECKOUT_URL = "https://pay.kirvano.com/69fba15e-cc5f-47ff-87e8-02d03e5ad670";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -133,7 +133,7 @@ function Index() {
         <header className="bg-primary shadow-header">
           <img
             src="/lash.png"
-            alt="Novena a Maria che Scioglie i Nodi — La diretta di oggi termina tra poco"
+            alt="Novena a Nossa Senhora Desatadora dos Nós — A live de hoje termina em instantes"
             className="mx-auto block h-[45px] w-auto max-w-full object-contain"
           />
         </header>
@@ -142,13 +142,13 @@ function Index() {
           <h1 className="mx-auto max-w-[372px]">
             <img
               src="/head.png"
-              alt="Ascolta Queste 9 Parole Prima di Dormire e Svegliati con il Nodo del Denaro Sciolto"
+              alt="Ouça Estas 9 Palavras Antes de Dormir e Acorde com o Nó do Dinheiro Desatado"
               className="mx-auto block w-full"
             />
           </h1>
           <img
             src="/su.png"
-            alt="Clicca qui sotto, guarda fino alla fine e scopri l'ordine giusto in cui la Madonna che Scioglie i Nodi ti ascolta."
+            alt="Clique abaixo, assista até o final e descubra a ordem certa em que Nossa Senhora Desatadora dos Nós te ouve."
             className="mx-auto mt-2 block w-full max-w-[330px]"
           />
 
@@ -161,13 +161,13 @@ function Index() {
               <a
                 href={CHECKOUT_URL}
                 onClick={trackInitiateCheckout}
-                className="block rounded-[8px] bg-checkout px-5 py-7 text-[20px] font-bold uppercase leading-[1.22] text-checkout-foreground shadow-checkout"
+                className="block overflow-hidden rounded-[8px] bg-checkout shadow-checkout"
               >
-                Voglio contribuire e sciogliere i miei nodi ora!
+                <img src="/btnaction.png" alt="Quero contribuir e desatar os meus nós agora!" className="block w-full" />
               </a>
               <p className="mt-3 px-2 text-[15px] leading-[1.45] text-offer-copy">
-                Prega per nove giorni. Se i nodi non iniziano a sciogliersi, il sacerdote ti
-                restituirà per intero il tuo contributo e la novena resterà comunque tua.
+                Reze por nove dias. Se os nós não começarem a se desatar, o padre devolve
+                integralmente a sua contribuição e a novena continua sendo sua.
               </p>
             </div>
           )}
@@ -176,13 +176,13 @@ function Index() {
           <footer className="mt-[26px] border-t border-divider pt-[20px] text-center">
             <img
               src="/lg.png"
-              alt="Maria che Scioglie i Nodi — La Novena delle 9 Parole"
+              alt="Nossa Senhora Desatadora dos Nós — A Novena das 9 Palavras"
               className="mx-auto block w-full max-w-[365px]"
             />
             <div className="mx-auto max-w-[365px] px-2 pb-5 pt-4 text-[11px] leading-[1.45] text-muted-foreground">
-              <p>Contenuto digitale con elementi vocali o visivi creati o modificati con strumenti di intelligenza artificiale.</p>
-              <p className="mt-2">Responsabile: Amanda Carolina Da Silva Pinto, produttrice indipendente – persona fisica. Rua Maria do Rosário de Carvalho, 131, Bonfim, São João del-Rei, MG, 3630-738, Brasile. Supporto e privacy: <a href="mailto:comprasuporte146@gmail.com" className="underline">comprasuporte146@gmail.com</a>.</p>
-              <p className="mt-2"><Link to="/privacy" className="underline">Privacy</Link> · <Link to="/termini" className="underline">Termini</Link></p>
+              <p>Conteúdo digital com elementos de voz ou imagem criados ou modificados com ferramentas de inteligência artificial.</p>
+              <p className="mt-2">Responsável: Amanda Carolina Da Silva Pinto, produtora independente – pessoa física. Rua Maria do Rosário de Carvalho, 131, Bonfim, São João del-Rei, MG, 3630-738, Brasil. Suporte e privacidade: <a href="mailto:comprasuporte146@gmail.com" className="underline">comprasuporte146@gmail.com</a>.</p>
+              <p className="mt-2"><Link to="/privacy" className="underline">Privacidade</Link> · <Link to="/termini" className="underline">Termos</Link></p>
             </div>
           </footer>
         </section>

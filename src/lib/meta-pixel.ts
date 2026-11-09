@@ -5,7 +5,7 @@ declare global { interface Window { fbq?: Fbq; _fbq?: Fbq } }
 
 let started = false;
 
-/** Only called after explicit acceptance by the consent controller. */
+/** Started on page load by the tracking starter. */
 export function startMetaPixel() {
   if (started || typeof window === "undefined") return;
   started = true;
