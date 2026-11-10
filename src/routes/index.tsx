@@ -20,19 +20,13 @@ export const Route = createFileRoute("/")({
       { rel: "canonical", href: "https://dicascotidianas.lovable.app/" },
       {
         rel: "preload",
-        href: "https://scripts.converteai.net/8e3d38fc-92fe-4a74-9b67-e8c32032f004/players/6ae492b9217265d6b618f7ab/v4/player.js",
+        href: "https://scripts.converteai.net/8e3d38fc-92fe-4a74-9b67-e8c32032f004/players/6af31a6047143931c696a8b7/v4/player.js",
         as: "script",
       },
       {
         rel: "preload",
         href: "https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js",
         as: "script",
-      },
-      {
-        rel: "preload",
-        href: "https://cdn.converteai.net/8e3d38fc-92fe-4a74-9b67-e8c32032f004/6ae491a13ce680b34e9e8919/main.m3u8",
-        as: "fetch",
-        crossOrigin: "anonymous",
       },
       { rel: "dns-prefetch", href: "https://cdn.converteai.net" },
       { rel: "dns-prefetch", href: "https://scripts.converteai.net" },
@@ -78,7 +72,7 @@ function Index() {
     if (!host || host.childElementCount > 0) return;
 
     const player = document.createElement("vturb-smartplayer");
-    player.id = "vid-6ae492b9217265d6b618f7ab";
+    player.id = "vid-6af31a6047143931c696a8b7";
     player.style.display = "block";
     player.style.margin = "0 auto";
     player.style.width = "100%";
@@ -88,7 +82,7 @@ function Index() {
     placeholder.className = "vturb-player-placeholder";
     placeholder.style.position = "relative";
     placeholder.style.width = "100%";
-    placeholder.style.padding = "127.48267898383372% 0 0";
+    placeholder.style.padding = "125.45045045045045% 0 0";
     placeholder.style.zIndex = "0";
     placeholder.style.backgroundColor = "black";
     player.appendChild(placeholder);
@@ -96,9 +90,9 @@ function Index() {
 
     const playerScript = document.createElement("script");
     playerScript.src =
-      "https://scripts.converteai.net/8e3d38fc-92fe-4a74-9b67-e8c32032f004/players/6ae492b9217265d6b618f7ab/v4/player.js";
+      "https://scripts.converteai.net/8e3d38fc-92fe-4a74-9b67-e8c32032f004/players/6af31a6047143931c696a8b7/v4/player.js";
     playerScript.async = true;
-    playerScript.dataset["vturbPlayer"] = "6ae492b9217265d6b618f7ab";
+    playerScript.dataset["vturbPlayer"] = "6af31a6047143931c696a8b7";
     document.head.appendChild(playerScript);
 
     // Autoplay: start the video as soon as the player is ready, muted if the
