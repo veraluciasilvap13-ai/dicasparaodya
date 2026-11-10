@@ -16,7 +16,7 @@ function Terms() {
     <h1 className="mt-6 text-2xl font-bold">Termini di uso</h1>
     <p className="mt-4">Aggiornamento: 8 novembre 2026.</p>
     <h2 className="mt-6 text-lg font-bold">Responsabile</h2>
-    <p className="mt-2">Amanda Carolina Da Silva Pinto, produttrice indipendente – persona fisica. Indirizzo: Rua Maria do Rosário de Carvalho, 131, bairro Bonfim, São João del-Rei, Minas Gerais, 3630-738, Brasile. Email: <a href="mailto:comprasuporte146@gmail.com" className="underline">comprasuporte146@gmail.com</a>.</p>
+    <p className="mt-2">Email: <a href="mailto:comprasuporte146@gmail.com" className="underline">comprasuporte146@gmail.com</a>.</p>
     <h2 className="mt-6 text-lg font-bold">Contenuto e offerta</h2>
     <p className="mt-2">La pagina presenta un contenuto digitale e un’offerta gestita tramite Hotmart. Il prezzo finale, le imposte, le modalità di pagamento, consegna, accesso, cancellazione e rimborso devono essere verificati nella pagina di pagamento prima dell’acquisto. Le promesse e la garanzia indicate nella pagina devono corrispondere alle condizioni realmente applicate dal venditore.</p>
     <h2 className="mt-6 text-lg font-bold">Uso del sito</h2>
