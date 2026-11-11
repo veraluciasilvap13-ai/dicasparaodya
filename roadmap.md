@@ -5,4 +5,4 @@
 - [x] Add terms route, update privacy, and add footer advertiser identity plus AI notice using Amanda Carolina Da Silva Pinto's supplied details.
 - [x] Verify no Meta/UTMify request fires before acceptance, UTMify fires after acceptance, and delayed checkout still works.
 - [x] Removed the Conversions API (server function, api-pixel.php and route ping); only browser Pixel + UTMify remain.
-- [x] Correct the PHP Meta events endpoint and remove test mode; replace the Cloudflare lookup with a local timezone hint and verify consent remains explicit. PHP execution and live Meta receipt on Hostinger remain unverified.
+- [x] Correct the PHP Meta events endpoint and remove test mode; replace the Cloudflare lookup with a local timezone hint and verify consent remains explicit. PHP execution and live Meta receipt on Hostinger remain unverified.- [x] Replaced Meta pixel 8773301692756198 with 1135352355567309; PageView on load and InitiateCheckout on click unchanged.

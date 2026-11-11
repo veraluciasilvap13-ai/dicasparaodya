@@ -1,4 +1,4 @@
-export const META_PIXEL_ID = "8773301692756198";
+export const META_PIXEL_ID = "1135352355567309";
 
 type Fbq = ((...args: unknown[]) => void) & { callMethod?: (...a: unknown[]) => void; queue?: unknown[][]; push?: unknown; loaded?: boolean; version?: string };
 declare global { interface Window { fbq?: Fbq; _fbq?: Fbq } }
@@ -22,7 +22,6 @@ export function startMetaPixel() {
     document.head.appendChild(t);
   }
   window.fbq("init", META_PIXEL_ID, {}, { agent: "lovable" });
-  // Same event_id is sent to the Conversions API so Meta deduplicates.
   const eventId = crypto.randomUUID();
   window.fbq("track", "PageView", {}, { eventID: eventId });
   return eventId;
