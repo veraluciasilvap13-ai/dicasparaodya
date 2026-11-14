@@ -136,7 +136,7 @@ function Index() {
           <h1 className="mx-auto max-w-[372px]">
             <img
               src="/head.png"
-              alt="Ascolta queste 9 parole prima di dormire e svegliati con il nodo del denaro sciolto"
+              alt="Ascolta queste 9 parole prima di dormire e svegliati con il nodo del salute sciolto"
               className="mx-auto block w-full"
             />
           </h1>
