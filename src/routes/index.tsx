@@ -20,7 +20,7 @@ export const Route = createFileRoute("/")({
       { rel: "canonical", href: "https://dicascotidianas.lovable.app/" },
       {
         rel: "preload",
-        href: "https://scripts.converteai.net/8e3d38fc-92fe-4a74-9b67-e8c32032f004/players/6ae492b9217265d6b618f7ab/v4/player.js",
+        href: "https://scripts.converteai.net/e486b522-e882-463a-b4d6-1498cfbf4712/players/6af8d8154e6e1090f63afece/v4/player.js",
         as: "script",
       },
       {
@@ -72,7 +72,7 @@ function Index() {
     if (!host || host.childElementCount > 0) return;
 
     const player = document.createElement("vturb-smartplayer");
-    player.id = "vid-6ae492b9217265d6b618f7ab";
+    player.id = "vid-6af8d8154e6e1090f63afece";
     player.style.display = "block";
     player.style.margin = "0 auto";
     player.style.width = "100%";
@@ -82,7 +82,7 @@ function Index() {
     placeholder.className = "vturb-player-placeholder";
     placeholder.style.position = "relative";
     placeholder.style.width = "100%";
-    placeholder.style.padding = "127.48267898383372% 0 0";
+    placeholder.style.padding = "126.09699769053118% 0 0";
     placeholder.style.zIndex = "0";
     placeholder.style.backgroundColor = "black";
     player.appendChild(placeholder);
@@ -90,9 +90,9 @@ function Index() {
 
     const playerScript = document.createElement("script");
     playerScript.src =
-      "https://scripts.converteai.net/8e3d38fc-92fe-4a74-9b67-e8c32032f004/players/6ae492b9217265d6b618f7ab/v4/player.js";
+      "https://scripts.converteai.net/e486b522-e882-463a-b4d6-1498cfbf4712/players/6af8d8154e6e1090f63afece/v4/player.js";
     playerScript.async = true;
-    playerScript.dataset["vturbPlayer"] = "6ae492b9217265d6b618f7ab";
+    playerScript.dataset["vturbPlayer"] = "6af8d8154e6e1090f63afece";
     document.head.appendChild(playerScript);
 
     // Autoplay: start the video as soon as the player is ready, muted if the
