@@ -1,4 +1,4 @@
-export const META_PIXEL_ID = "1135352355567309";
+export const META_PIXEL_ID = "2660709101023593";
 
 type Fbq = ((...args: unknown[]) => void) & { callMethod?: (...a: unknown[]) => void; queue?: unknown[][]; push?: unknown; loaded?: boolean; version?: string };
 declare global { interface Window { fbq?: Fbq; _fbq?: Fbq } }
@@ -11,7 +11,7 @@ export function startMetaPixel() {
   started = true;
   if (!window.fbq) {
     const n = function (...args: unknown[]) {
-      if (n.callMethod) n.callMethod.apply(n, args); else n.queue!.push(args);
+      if (n.callMethod) n.callMethod.apply(n, args); else n.queue?.push(args);
     } as Fbq;
     window.fbq = n;
     if (!window._fbq) window._fbq = n;
